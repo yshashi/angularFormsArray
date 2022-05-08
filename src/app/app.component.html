@@ -1,0 +1,42 @@
+<h1>Angular FormsArray</h1>
+<div class="container">
+  <form [formGroup]="userForm" class="row g-3">
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" />
+    </div>
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" />
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputAddress"
+        placeholder="1234 Main St"
+      />
+    </div>
+    <div class="col-12">
+      Skills
+      <div formArrayName="skills">
+        <div *ngFor="let skill of skills().controls; let i = index">
+          <div [formGroupName]="i">
+            {{ i + 1 }}
+            skill name :
+            <input type="text" formControlName="skill" />
+            exp:
+            <input type="text" formControlName="exp" />
+
+            <button class="btn btn-danger" (click)="removeSkill(i)">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <button (click)="addSkill()" class="btn btn-primary">Add Skills</button>
+      <button (click)="onSubmit()" class="btn btn-primary mx-3">Submit</button>
+    </div>
+  </form>
+</div>
